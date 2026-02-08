@@ -7,22 +7,32 @@ Debug/
 Release/
 x64/
 x86/
+*.vcxproj.user
+
 
 # build outputs
 *.obj
 *.exe
 *.pdb
 *.ilk
-*.lib
 *.exp
-
-# DLLは基本無視
 *.dll
+# 生成libのみ無視（外部libは許可）
+# *.lib ← 削除する（またはコメントアウト）
 
 # ========================
+# SDL2
+# ========================
+
 # 例外（重要）
-# ========================
 
-# SDL配布物は管理する
-!SDL2/bin/
-!SDL2/bin/*.dll
+!SDL2/lib/
+!SDL2/lib/**/*.lib
+!SDL2/lib/**/*.dll
+
+SDL2/docs/
+SDL2/cmake/
+SDL2/*.txt
+SDL2/.git-hash
+
+
