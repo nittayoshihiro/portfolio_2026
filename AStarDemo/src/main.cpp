@@ -1,5 +1,7 @@
 #include <SDL.h>
 #include <vector>
+#include <queue>
+#include <algorithm>
 
 constexpr int WINDOW_WIDTH = 640;
 constexpr int WINDOW_HEIGHT = 480;
@@ -46,7 +48,19 @@ struct Node
     int y;
 
     bool walkable = true;  //通行可能か
+
+    int g = 0;
+    int h = 0;
+    int f = 0;
+
+    Node* parent = nullptr;
 };
+
+//マンハッタン距離
+int heuristic(Node* a, Node* b)
+{
+    return abs(a->x - b->x) + abs(a->y - b->y);
+}
 
 //グリッド状のノードデータ
 std::vector<std::vector<Node>> grid;
@@ -64,6 +78,74 @@ void InitGrid()
         }
     }
 }
+
+//A＊経路探索
+std::vector<Node*> FindPath(Node* start, Node* goal)
+{
+    std::vector<Node*> open;
+    std::vector<Node*> closed;
+
+    open.push_back(start);
+
+    while (!open.empty())
+    {
+        // f最小ノード取得
+        auto current = *std::min_element(open.begin(), open.end(),
+            [](Node* a, Node* b) { return a->f < b->f; });
+
+        if (current == goal)
+        {
+            std::vector<Node*> path;
+
+            while (current)
+            {
+                path.push_back(current);
+                current = current->parent;
+            }
+
+            std::reverse(path.begin(), path.end());
+            return path;
+        }
+
+        open.erase(std::find(open.begin(), open.end(), current));
+        closed.push_back(current);
+
+        const int dx[4] = { 1,-1,0,0 };
+        const int dy[4] = { 0,0,1,-1 };
+
+        for (int i = 0; i < 4; i++)
+        {
+            int nx = current->x + dx[i];
+            int ny = current->y + dy[i];
+
+            if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS)
+                continue;
+
+            Node* neighbor = &grid[ny][nx];
+
+            if (!neighbor->walkable)
+                continue;
+
+            if (std::find(closed.begin(), closed.end(), neighbor) != closed.end())
+                continue;
+
+            int newG = current->g + 1;
+
+            if (std::find(open.begin(), open.end(), neighbor) == open.end())
+                open.push_back(neighbor);
+            else if (newG >= neighbor->g)
+                continue;
+
+            neighbor->parent = current;
+            neighbor->g = newG;
+            neighbor->h = heuristic(neighbor, goal);
+            neighbor->f = neighbor->g + neighbor->h;
+        }
+    }
+
+    return {};
+}
+
 
 //ノード描画
 void DrawNodes(SDL_Renderer* renderer)
@@ -88,16 +170,12 @@ void ResetGrid()
             node.walkable = true;
 }
 
+
 int main(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_VIDEO);
 
     InitGrid();
-
-    //テスト描画設定。
-    grid[5][5].walkable = false;
-    grid[5][6].walkable = false;
-    grid[5][7].walkable = false;
 
     SDL_Window* win = SDL_CreateWindow(
         "AStar Demo",
@@ -157,18 +235,26 @@ int main(int argc, char* argv[])
             }
         }
 
-
         //背景
         SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
         SDL_RenderClear(renderer);
+
+        //テスト描画設定。
+        auto path = FindPath(&grid[1][1], &grid[10][10]);
+
+        for (auto n : path)
+        {
+            DrawCell(renderer, n->x, n->y, { 0,255,0,255 });
+        }
+        //スタートとゴールが分かりやすいように塗る
+        DrawCell(renderer, 1, 1, { 255, 100, 100, 255 });
+        DrawCell(renderer, 10, 10, { 100,200, 255, 255 });
 
         //ノード描画
         DrawNodes(renderer);
     
         //グリッド描画
         DrawGrid(renderer);
-        //テストで3,4を赤で塗る。
-        DrawCell(renderer, 3, 4, { 255, 100, 100, 255 });
 
         SDL_RenderPresent(renderer);
     }
