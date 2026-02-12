@@ -62,6 +62,12 @@ int heuristic(Node* a, Node* b)
     return abs(a->x - b->x) + abs(a->y - b->y);
 }
 
+Node* startNode = nullptr;
+Node* goalNode = nullptr;
+
+std::vector<Node*> currentPath;
+
+
 //グリッド状のノードデータ
 std::vector<std::vector<Node>> grid;
 
@@ -190,6 +196,9 @@ int main(int argc, char* argv[])
     bool running = true;
     SDL_Event e;
 
+    bool placeStartNext = true;
+    bool placingWall = false;
+
     //ゲームループ
     while (running)
     {
@@ -200,38 +209,78 @@ int main(int argc, char* argv[])
                 running = false;
             }  
 
-            ////マウスクリックで壁を作る。
-            //if (e.type == SDL_MOUSEBUTTONDOWN)
-            //{
-            //    int mx, my;
-            //    SDL_GetMouseState(&mx, &my);
-
-            //    int gx = mx / CELL_SIZE;
-            //    int gy = my / CELL_SIZE;
-
-            //    grid[gy][gx].walkable = !grid[gy][gx].walkable;
-            //}
-
-            //右クリックで壁をクリア
-            if (e.type == SDL_MOUSEBUTTONDOWN &&
-                e.button.button == SDL_BUTTON_RIGHT)
+            // スペースでリセット
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE)
             {
                 ResetGrid();
             }
-        }
 
-        int mx, my;
-        Uint32 buttons = SDL_GetMouseState(&mx, &my);
-
-        //左クリック中のドラッグで壁を作る。
-        if (buttons & SDL_BUTTON(SDL_BUTTON_LEFT))
-        {
-            int gx = mx / CELL_SIZE;
-            int gy = my / CELL_SIZE;
-
-            if (gx >= 0 && gx < COLS && gy >= 0 && gy < ROWS)
+            if (e.type == SDL_MOUSEBUTTONDOWN)
             {
-                grid[gy][gx].walkable = false;
+                int mx, my;
+                SDL_GetMouseState(&mx, &my);
+
+                int gx = mx / CELL_SIZE;
+                int gy = my / CELL_SIZE;
+
+                if (gx < 0 || gy < 0 || gx >= COLS || gy >= ROWS)
+                {
+                    continue;
+                }
+                   
+                Node* clicked = &grid[gy][gx];
+
+                //左クリックで壁を作る。
+                if (e.button.button == SDL_BUTTON_LEFT)
+                {
+                    placingWall = true;
+
+                    if (clicked != startNode && clicked != goalNode)
+                    {
+                        clicked->walkable = false;
+                    }
+                }
+
+                // 右 → start/goalトグル
+                if (e.button.button == SDL_BUTTON_RIGHT)
+                {
+                    if (placeStartNext)
+                    {
+                        startNode = clicked;
+                    }
+                    else
+                    {
+                        goalNode = clicked;
+                    }
+
+                    placeStartNext = !placeStartNext;
+
+                    if (startNode && goalNode)
+                    {
+                        currentPath = FindPath(startNode, goalNode);
+                    }
+                }
+            }
+            // ドラッグ中
+            if (e.type == SDL_MOUSEMOTION && placingWall)
+            {
+                int gx = e.motion.x / CELL_SIZE;
+                int gy = e.motion.y / CELL_SIZE;
+
+                if (gx >= 0 && gx < COLS && gy >= 0 && gy < ROWS)
+                {
+                    Node* clicked = &grid[gy][gx];
+
+                    if (clicked != startNode && clicked != goalNode)
+                        clicked->walkable = false;
+                }
+            }
+
+            // 離した
+            if (e.type == SDL_MOUSEBUTTONUP)
+            {
+                if (e.button.button == SDL_BUTTON_LEFT)
+                    placingWall = false;
             }
         }
 
@@ -239,16 +288,22 @@ int main(int argc, char* argv[])
         SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
         SDL_RenderClear(renderer);
 
-        //テスト描画設定。
-        auto path = FindPath(&grid[1][1], &grid[10][10]);
 
-        for (auto n : path)
+        for (auto n : currentPath)
         {
             DrawCell(renderer, n->x, n->y, { 0,255,0,255 });
         }
-        //スタートとゴールが分かりやすいように塗る
-        DrawCell(renderer, 1, 1, { 255, 100, 100, 255 });
-        DrawCell(renderer, 10, 10, { 100,200, 255, 255 });
+
+        if (startNode)
+        {
+            DrawCell(renderer, startNode->x, startNode->y, { 255,80,80,255 });
+        }
+            
+        if (goalNode)
+        {
+            DrawCell(renderer, goalNode->x, goalNode->y, { 80,160,255,255 });
+        }
+            
 
         //ノード描画
         DrawNodes(renderer);
