@@ -85,36 +85,56 @@ void InitGrid()
     }
 }
 
+//”Z“x”äŠr
+struct CompareNode
+{
+    bool operator()(Node* a, Node* b) const
+    {
+        return a->f > b->f;
+    }
+};
+
+
 //A–Œo˜H’Tõ
 std::vector<Node*> FindPath(Node* start, Node* goal)
 {
-    std::vector<Node*> open;
-    std::vector<Node*> closed;
+    //ƒf[ƒ^‚ÌƒNƒŠƒA
+    for (int y = 0; y < ROWS; ++y)
+    {
+        for (int x = 0; x < COLS; ++x)
+        {
+            grid[y][x].parent = nullptr;
+            grid[y][x].g = grid[y][x].h = grid[y][x].f = 0;
+        }
+    }
 
-    open.push_back(start);
+    std::priority_queue<Node*, std::vector<Node*>, CompareNode> open;
+
+    bool closed[ROWS][COLS] = {};
+
+    open.push(start);
 
     while (!open.empty())
     {
-        // fÅ¬ƒm[ƒhæ“¾
-        auto current = *std::min_element(open.begin(), open.end(),
-            [](Node* a, Node* b) { return a->f < b->f; });
+        Node* current = open.top();
+        open.pop();
+
+        if (closed[current->y][current->x])
+            continue;
+
+        closed[current->y][current->x] = true;
 
         if (current == goal)
         {
             std::vector<Node*> path;
-
             while (current)
             {
                 path.push_back(current);
                 current = current->parent;
             }
-
             std::reverse(path.begin(), path.end());
             return path;
         }
-
-        open.erase(std::find(open.begin(), open.end(), current));
-        closed.push_back(current);
 
         const int dx[4] = { 1,-1,0,0 };
         const int dy[4] = { 0,0,1,-1 };
@@ -129,23 +149,20 @@ std::vector<Node*> FindPath(Node* start, Node* goal)
 
             Node* neighbor = &grid[ny][nx];
 
-            if (!neighbor->walkable)
-                continue;
-
-            if (std::find(closed.begin(), closed.end(), neighbor) != closed.end())
+            if (!neighbor->walkable || closed[ny][nx])
                 continue;
 
             int newG = current->g + 1;
 
-            if (std::find(open.begin(), open.end(), neighbor) == open.end())
-                open.push_back(neighbor);
-            else if (newG >= neighbor->g)
-                continue;
+            if (neighbor->parent == nullptr || newG < neighbor->g)
+            {
+                neighbor->parent = current;
+                neighbor->g = newG;
+                neighbor->h = heuristic(neighbor, goal);
+                neighbor->f = neighbor->g + neighbor->h;
 
-            neighbor->parent = current;
-            neighbor->g = newG;
-            neighbor->h = heuristic(neighbor, goal);
-            neighbor->f = neighbor->g + neighbor->h;
+                open.push(neighbor);
+            }
         }
     }
 
