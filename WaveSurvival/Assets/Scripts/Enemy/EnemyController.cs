@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 2f;
+    [SerializeField] private int _maxHP = 3;
+    private int _currentHP;
     private Rigidbody2D _rb;
     private Transform _player;
 
@@ -11,6 +13,7 @@ public class EnemyController : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _rb = GetComponent<Rigidbody2D>();
+        _currentHP = _maxHP;
     }
 
     void Update()
@@ -23,4 +26,25 @@ public class EnemyController : MonoBehaviour
         Vector2 direction = (_player.position - transform.position).normalized;
         _rb.linearVelocity = direction * _moveSpeed;
     }
+
+    public void TakeDamage(int damage)
+    {
+        _currentHP -= damage;
+
+        if (_currentHP <= 0)
+        {
+            Debug.Log("EnemyDead");
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //?‚ÍŒ©‚Â‚©‚Á‚½Žž
+            collision.gameObject.GetComponent<PlayerController>()?.TakeDamage(1);
+        }
+    }
+
 }
