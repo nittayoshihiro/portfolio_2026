@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         //’e”­Ëˆ—
         _fireTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space) && _fireTimer <= 0f)
+        if (Input.GetMouseButtonDown(0) &&_fireTimer <= 0f)
         {
             Fire();
             _fireTimer = _fireCooldown;
@@ -42,9 +42,19 @@ public class PlayerController : MonoBehaviour
     //’e”­Ëˆ—
     private void Fire()
     {
+        
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
+
+        Vector2 direction = mousePos - _firePoint.position;
+
+        //ƒvƒŒƒCƒ„[‚ğ‰ñ“]‚³‚¹‚é
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        //’e‚ğ¶¬
         GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
-        Vector2 dir = Vector2.right; 
-        bullet.GetComponent<Bullet>().Init(dir);
+        bullet.GetComponent<Bullet>().Init(direction);
     }
 
     public void TakeDamage(int damage)
