@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireCooldown = 0.3f;
+    [SerializeField] private TMP_Text _hpText;
+    [SerializeField] private GameObject _gameOverTextObject;
     private float _fireTimer;
     private int _currentHP;
     private bool _isInvincible;
@@ -62,10 +65,12 @@ public class PlayerController : MonoBehaviour
         if (_isInvincible) return;
 
         _currentHP -= damage;
+        UpdateHPUI();
 
         if (_currentHP <= 0)
         {
             Debug.Log("Player Dead");
+            _gameOverTextObject.SetActive(true);
         }
 
         StartCoroutine(InvincibleCoroutine());
@@ -79,4 +84,10 @@ public class PlayerController : MonoBehaviour
 
         _isInvincible = false;
     }
+
+    void UpdateHPUI()
+    {
+        _hpText.text = "HP: " + _currentHP;
+    }
+
 }

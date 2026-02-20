@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
         if (_currentHP <= 0)
         {
             Debug.Log("EnemyDead");
+            GameManager.Instance.AddScore(10);
             Destroy(gameObject);
         }
     }
