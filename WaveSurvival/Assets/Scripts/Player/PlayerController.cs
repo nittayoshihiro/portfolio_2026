@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using TMPro;
+using static GameManager;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireCooldown = 0.3f;
     [SerializeField] private TMP_Text _hpText;
-    [SerializeField] private GameObject _gameOverTextObject;
     private float _fireTimer;
     private int _currentHP;
     private bool _isInvincible;
@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
-    { 
+    {
+        if (GameManager.Instance.CurrentGameState() != GameState.Playing)
+            return;
+
         //à⁄ìÆèàóù
         _input.x = Input.GetAxisRaw("Horizontal");
         _input.y = Input.GetAxisRaw("Vertical");
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
         if (_currentHP <= 0)
         {
             Debug.Log("Player Dead");
-            _gameOverTextObject.SetActive(true);
+            GameManager.Instance.GameOver();
         }
 
         StartCoroutine(InvincibleCoroutine());
@@ -88,6 +91,13 @@ public class PlayerController : MonoBehaviour
     void UpdateHPUI()
     {
         _hpText.text = "HP: " + _currentHP;
+    }
+
+    public void ResetPlayer()
+    {
+        _currentHP = _maxHP;
+        UpdateHPUI();
+        transform.position = Vector3.zero;
     }
 
 }
