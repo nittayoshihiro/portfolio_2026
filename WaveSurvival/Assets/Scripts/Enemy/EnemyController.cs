@@ -4,6 +4,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 2f;
     [SerializeField] private int _maxHP = 3;
+    [SerializeField] private GameObject _deathEffect;
     private int _currentHP;
     private Rigidbody2D _rb;
     private Transform _player;
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour
         if (_currentHP <= 0)
         {
             Debug.Log("EnemyDead");
+            Instantiate(_deathEffect, transform.position, Quaternion.identity);
             GameManager.Instance.AddScore(10);
             Destroy(gameObject);
         }

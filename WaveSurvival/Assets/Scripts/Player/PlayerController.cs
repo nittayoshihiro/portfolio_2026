@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireCooldown = 0.3f;
     [SerializeField] private TMP_Text _hpText;
+    [SerializeField] private ParticleSystem _muzzleEffect;
     private float _fireTimer;
     private int _currentHP;
     private bool _isInvincible;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) &&_fireTimer <= 0f)
         {
             Fire();
+            _muzzleEffect.Play();
             _fireTimer = _fireCooldown;
         }
     }
