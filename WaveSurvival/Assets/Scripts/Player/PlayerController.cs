@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using TMPro;
 using static GameManager;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
         _currentHP -= damage;
         UpdateHPUI();
+        StartCoroutine(FlashRed(this.GetComponent<SpriteRenderer>()));
 
         if (_currentHP <= 0)
         {
@@ -100,6 +102,13 @@ public class PlayerController : MonoBehaviour
         _currentHP = _maxHP;
         UpdateHPUI();
         transform.position = Vector3.zero;
+    }
+
+    IEnumerator FlashRed(SpriteRenderer spriteRenderer)
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
     }
 
 }
