@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UIElements;
 using TMPro;
 using static GameManager;
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _fireCooldown = 0.3f;
     [SerializeField] private TMP_Text _hpText;
     [SerializeField] private ParticleSystem _muzzleEffect;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _shootSE;
+    [SerializeField] private AudioClip _damageSE;
     private float _fireTimer;
     private int _currentHP;
     private bool _isInvincible;
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour
     //íeî≠éÀèàóù
     private void Fire()
     {
-        
+        _audioSource.PlayOneShot(_shootSE);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
@@ -71,8 +75,10 @@ public class PlayerController : MonoBehaviour
         if (_isInvincible) return;
 
         _currentHP -= damage;
-        UpdateHPUI();
+        _audioSource.PlayOneShot(_damageSE);
         StartCoroutine(FlashRed(this.GetComponent<SpriteRenderer>()));
+        UpdateHPUI();
+        
 
         if (_currentHP <= 0)
         {

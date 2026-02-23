@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameUI;
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _waveText;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _enemyDeathSE;
     private GameState _currentState;
     public GameState CurrentGameState() { return _currentState; }
     private int _score = 0;
@@ -102,6 +104,11 @@ public class GameManager : MonoBehaviour
 
         _resultPanel.SetActive(false);
         _gameUI.SetActive(true);
+    }
+
+    public void PlayEnemyDeath()
+    {
+        _audioSource.PlayOneShot(_enemyDeathSE);
     }
 
 }

@@ -36,6 +36,7 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("EnemyDead");
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
+            GameManager.Instance.PlayEnemyDeath();
             GameManager.Instance.AddScore(10);
             Destroy(gameObject);
         }
