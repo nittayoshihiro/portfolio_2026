@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text _waveText;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _enemyDeathSE;
+    [SerializeField] private AudioMixer _mixer;
     private GameState _currentState;
     public GameState CurrentGameState() { return _currentState; }
     private int _score = 0;
@@ -109,6 +111,16 @@ public class GameManager : MonoBehaviour
     public void PlayEnemyDeath()
     {
         _audioSource.PlayOneShot(_enemyDeathSE);
+    }
+
+    public void SetBGMVolume(float value)
+    {
+        _mixer.SetFloat("BGMVolume", Mathf.Log10(value) * 20);
+    }
+
+    public void SetSEVolume(float value)
+    {
+        _mixer.SetFloat("SEVolume", Mathf.Log10(value) * 20);
     }
 
 }
