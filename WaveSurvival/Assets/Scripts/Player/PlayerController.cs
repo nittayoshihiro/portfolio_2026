@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.CurrentGameState() != GameState.Playing)
             return;
 
+        RotateToMouse();
+
         //ˆÚ“®ˆ—
         _input.x = Input.GetAxisRaw("Horizontal");
         _input.y = Input.GetAxisRaw("Vertical");
@@ -60,10 +62,6 @@ public class PlayerController : MonoBehaviour
         mousePos.z = 0f;
 
         Vector2 direction = mousePos - _firePoint.position;
-
-        //ƒvƒŒƒCƒ„[‚ğ‰ñ“]‚³‚¹‚é
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         //’e‚ğ¶¬
         GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
@@ -117,4 +115,17 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
+    private void RotateToMouse()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
+
+        Vector2 direction = mousePos - transform.position;
+
+        if (direction.sqrMagnitude < 0.001f)
+            return;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
 }
