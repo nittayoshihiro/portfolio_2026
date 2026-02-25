@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _enemyDeathSE;
     [SerializeField] private AudioMixer _mixer;
+    [SerializeField] private PlayerController _player;
     private GameState _currentState;
     public GameState CurrentGameState() { return _currentState; }
     private int _score = 0;
@@ -96,8 +97,7 @@ public class GameManager : MonoBehaviour
         }
 
         // プレイヤーHPリセット
-        PlayerController player = FindObjectOfType<PlayerController>();
-        player.ResetPlayer();
+        _player.ResetPlayer();
 
         _score = 0;
         _scoreText.text = "Score: 0";

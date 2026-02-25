@@ -32,10 +32,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.CurrentGameState() != GameState.Playing)
-            return;
-
         RotateToMouse();
+        if (GameManager.Instance.CurrentGameState() != GameState.Playing)
+        {
+            return;
+        }
 
         //à⁄ìÆèàóù
         _input.x = Input.GetAxisRaw("Horizontal");
@@ -49,7 +50,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) &&_fireTimer <= 0f)
         {
             Fire();
-            _muzzleEffect.Play();
             _fireTimer = _fireCooldown;
         }
     }
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     //íeî≠éÀèàóù
     private void Fire()
     {
+        _muzzleEffect.Play();
         _audioSource.PlayOneShot(_shootSE);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
@@ -64,8 +65,8 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = mousePos - _firePoint.position;
 
         //íeÇê∂ê¨
-        GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().Init(direction);
+        Bullet bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity).GetComponent<Bullet>();
+        bullet.Init(direction);
     }
 
     public void TakeDamage(int damage)
@@ -80,7 +81,6 @@ public class PlayerController : MonoBehaviour
 
         if (_currentHP <= 0)
         {
-            Debug.Log("Player Dead");
             GameManager.Instance.GameOver();
         }
 

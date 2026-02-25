@@ -27,12 +27,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("OnTriggerEnter2D");
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy");
             other.GetComponent<EnemyController>()?.TakeDamage(1);
             Destroy(gameObject);
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

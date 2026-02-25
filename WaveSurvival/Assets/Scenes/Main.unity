@@ -1114,7 +1114,8 @@ MonoBehaviour:
   _waveText: {fileID: 384658630}
   _audioSource: {fileID: 1175677907}
   _enemyDeathSE: {fileID: 8300000, guid: 88d0c63b7ca254b42977a3e9a005e34b, type: 3}
-  _mixer: {fileID: 0}
+  _mixer: {fileID: 24100000, guid: a0c8cad4d134cc44f84826223f441f66, type: 2}
+  _player: {fileID: 1390907691}
 --- !u!82 &1175677907
 AudioSource:
   m_ObjectHideFlags: 0

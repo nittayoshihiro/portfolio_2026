@@ -34,7 +34,6 @@ public class EnemyController : MonoBehaviour
 
         if (_currentHP <= 0)
         {
-            Debug.Log("EnemyDead");
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
             GameManager.Instance.PlayEnemyDeath();
             GameManager.Instance.AddScore(10);

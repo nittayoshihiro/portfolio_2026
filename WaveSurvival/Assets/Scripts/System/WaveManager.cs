@@ -14,7 +14,10 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.CurrentGameState() != GameState.Playing)
+        {
             return;
+        }
+
         timer += Time.deltaTime;
 
         if (timer >= _timeBetweenWaves)
@@ -34,8 +37,6 @@ public class WaveManager : MonoBehaviour
         {
             SpawnEnemy();
         }
-
-        Debug.Log("Wave: " + currentWave);
     }
 
     void SpawnEnemy()
