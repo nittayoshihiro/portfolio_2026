@@ -1,0 +1,858 @@
+fileFormatVersion: 2
+guid: 8b42c86c082b4284c99eda1af1c8bf9d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1019807404665274733
+    second: MiddleStars_0
+  - first:
+      213: -7633715891060849078
+    second: MiddleStars_1
+  - first:
+      213: 871945361366752616
+    second: MiddleStars_2
+  - first:
+      213: -3070387364847396920
+    second: MiddleStars_3
+  - first:
+      213: -4063055642613334310
+    second: MiddleStars_4
+  - first:
+      213: -1260219128932437223
+    second: MiddleStars_5
+  - first:
+      213: 4055981222544167483
+    second: MiddleStars_6
+  - first:
+      213: 3638539699988234371
+    second: MiddleStars_7
+  - first:
+      213: 8489102191629540291
+    second: MiddleStars_8
+  - first:
+      213: -6797414057269613449
+    second: MiddleStars_9
+  - first:
+      213: -2366886073256610663
+    second: MiddleStars_10
+  - first:
+      213: 7391302444281719382
+    second: MiddleStars_11
+  - first:
+      213: 5121533230575756135
+    second: MiddleStars_12
+  - first:
+      213: -3809252436975413193
+    second: MiddleStars_13
+  - first:
+      213: -2369908099266015596
+    second: MiddleStars_14
+  - first:
+      213: 5479454803356517847
+    second: MiddleStars_15
+  - first:
+      213: 24771110461167841
+    second: MiddleStars_16
+  - first:
+      213: -6816631936029829544
+    second: MiddleStars_17
+  - first:
+      213: -2681692927537194799
+    second: MiddleStars_18
+  - first:
+      213: -4400277570650531886
+    second: MiddleStars_19
+  - first:
+      213: 373983761210589733
+    second: MiddleStars_20
+  - first:
+      213: 4143778972639728704
+    second: MiddleStars_21
+  - first:
+      213: -3498146090779877775
+    second: MiddleStars_22
+  - first:
+      213: 2055267150985762657
+    second: MiddleStars_23
+  - first:
+      213: -1744890598307702487
+    second: MiddleStars_24
+  - first:
+      213: -7589886244783750204
+    second: MiddleStars_25
+  - first:
+      213: 5430067306237873506
+    second: MiddleStars_26
+  - first:
+      213: -2683531510823431972
+    second: MiddleStars_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MiddleStars_0
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 977
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d61036e6e65172e00800000000000000
+      internalID: 1019807404665274733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 941
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a46401d97d79f0690800000000000000
+      internalID: -7633715891060849078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_2
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 904
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86d90d7bfa5c91c00800000000000000
+      internalID: 871945361366752616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_3
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 894
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c75c6395fac365d0800000000000000
+      internalID: -3070387364847396920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_4
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 882
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adeb2678b602d97c0800000000000000
+      internalID: -4063055642613334310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_5
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 829
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91374d0116dc28ee0800000000000000
+      internalID: -1260219128932437223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_6
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 820
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b325661be6db94830800000000000000
+      internalID: 4055981222544167483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_7
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 800
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38084fe4490be7230800000000000000
+      internalID: 3638539699988234371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_8
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 720
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cb911257795fc570800000000000000
+      internalID: 8489102191629540291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_9
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 721
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ca23dddebbaa1a0800000000000000
+      internalID: -6797414057269613449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_10
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 701
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99478bb18a1272fd0800000000000000
+      internalID: -2366886073256610663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_11
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 664
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65a63ea896e239660800000000000000
+      internalID: 7391302444281719382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_12
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 599
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 763a3d19657531740800000000000000
+      internalID: 5121533230575756135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_13
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 567
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7381a424711d22bc0800000000000000
+      internalID: -3809252436975413193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_14
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 548
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49e8de8d3256c1fd0800000000000000
+      internalID: -2369908099266015596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_15
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 551
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d58fdcbc1fea0c40800000000000000
+      internalID: 5479454803356517847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_16
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 482
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8dab79131085000800000000000000
+      internalID: 24771110461167841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_17
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 407
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 856db58ce557661a0800000000000000
+      internalID: -6816631936029829544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_18
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 359
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d8d7799d76b8cad0800000000000000
+      internalID: -2681692927537194799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_19
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 354
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d79148fcd21fe2c0800000000000000
+      internalID: -4400277570650531886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_20
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 317
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 522c8b6df38a03500800000000000000
+      internalID: 373983761210589733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_21
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 244
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0449ceb5509a18930800000000000000
+      internalID: 4143778972639728704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_22
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 257
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ed4a61aa6147fc0800000000000000
+      internalID: -3498146090779877775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_23
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 175
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1671905a596c58c10800000000000000
+      internalID: 2055267150985762657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_24
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 45
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92953f3ee37e8c7e0800000000000000
+      internalID: -1744890598307702487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_25
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 45
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c38a0e5cae4ba690800000000000000
+      internalID: -7589886244783750204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_26
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 10
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26d45cef1797b5b40800000000000000
+      internalID: 5430067306237873506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiddleStars_27
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 19
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd05dc11f4e22cad0800000000000000
+      internalID: -2683531510823431972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MiddleStars_0: 1019807404665274733
+      MiddleStars_1: -7633715891060849078
+      MiddleStars_10: -2366886073256610663
+      MiddleStars_11: 7391302444281719382
+      MiddleStars_12: 5121533230575756135
+      MiddleStars_13: -3809252436975413193
+      MiddleStars_14: -2369908099266015596
+      MiddleStars_15: 5479454803356517847
+      MiddleStars_16: 24771110461167841
+      MiddleStars_17: -6816631936029829544
+      MiddleStars_18: -2681692927537194799
+      MiddleStars_19: -4400277570650531886
+      MiddleStars_2: 871945361366752616
+      MiddleStars_20: 373983761210589733
+      MiddleStars_21: 4143778972639728704
+      MiddleStars_22: -3498146090779877775
+      MiddleStars_23: 2055267150985762657
+      MiddleStars_24: -1744890598307702487
+      MiddleStars_25: -7589886244783750204
+      MiddleStars_26: 5430067306237873506
+      MiddleStars_27: -2683531510823431972
+      MiddleStars_3: -3070387364847396920
+      MiddleStars_4: -4063055642613334310
+      MiddleStars_5: -1260219128932437223
+      MiddleStars_6: 4055981222544167483
+      MiddleStars_7: 3638539699988234371
+      MiddleStars_8: 8489102191629540291
+      MiddleStars_9: -6797414057269613449
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

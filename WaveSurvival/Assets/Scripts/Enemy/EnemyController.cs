@@ -34,7 +34,8 @@ public class EnemyController : MonoBehaviour
 
         if (_currentHP <= 0)
         {
-            Instantiate(_deathEffect, transform.position, Quaternion.identity);
+            GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
             GameManager.Instance.PlayEnemyDeath();
             GameManager.Instance.AddScore(10);
             Destroy(gameObject);
