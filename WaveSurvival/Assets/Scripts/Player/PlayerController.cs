@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _shootSE;
     [SerializeField] private AudioClip _damageSE;
+    [SerializeField] private int _maxBulletCount = 3;
+    private int _currentBulletCount = 0;
     private float _fireTimer;
     private int _currentHP;
     private bool _isInvincible;
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
         //íeî≠éÀèàóù
         _fireTimer -= Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0) &&_fireTimer <= 0f)
+        if (Input.GetMouseButtonDown(0) && _currentBulletCount < _maxBulletCount)
         {
             Fire();
             _fireTimer = _fireCooldown;
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
     //íeî≠éÀèàóù
     private void Fire()
     {
+        _currentBulletCount++;
         _muzzleEffect.Play();
         _audioSource.PlayOneShot(_shootSE);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -66,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
         //íeÇê∂ê¨
         Bullet bullet = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity).GetComponent<Bullet>();
-        bullet.Init(direction);
+        bullet.Init(direction,this);
     }
 
     public void TakeDamage(int damage)
@@ -127,5 +130,10 @@ public class PlayerController : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle-90f);
+    }
+
+    public void OnBulletDestroyed()
+    {
+        _currentBulletCount--;
     }
 }

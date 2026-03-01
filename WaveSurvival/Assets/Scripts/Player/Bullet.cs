@@ -7,9 +7,11 @@ public class Bullet : MonoBehaviour
 
     private Vector2 _direction;
     private float _timer;
+    private PlayerController _player;
 
-    public void Init(Vector2 dir)
+    public void Init(Vector2 dir, PlayerController player)
     {
+        _player = player;
         _direction = dir.normalized;
         _timer = _lifeTime;
     }
@@ -37,5 +39,13 @@ public class Bullet : MonoBehaviour
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (_player != null)
+        {
+            _player.OnBulletDestroyed();
+        }
     }
 }

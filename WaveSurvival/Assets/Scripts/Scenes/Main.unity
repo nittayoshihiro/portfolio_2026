@@ -1616,6 +1616,7 @@ MonoBehaviour:
   _audioSource: {fileID: 1390907696}
   _shootSE: {fileID: 8300000, guid: ca6086c31f21f564fba0e83d9e6875f8, type: 3}
   _damageSE: {fileID: 8300000, guid: ea3644efb2141f64197a56052dd7f561, type: 3}
+  _maxBulletCount: 3
 --- !u!61 &1390907692
 BoxCollider2D:
   m_ObjectHideFlags: 0
