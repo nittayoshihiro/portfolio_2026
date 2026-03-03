@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 121763161215086426}
   - component: {fileID: 7853732153240180753}
   - component: {fileID: 7704867124978668331}
+  - component: {fileID: 682466581897909671}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: SmallEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,11 +161,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5553103858841794881}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 247024f734b91894585201bfd0f91567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
   _maxHP: 3
+  _deathEffect: {fileID: 4397544317080297143, guid: 0fe91b2474ac7af41a2a904de8963206, type: 3}
+--- !u!114 &682466581897909671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5553103858841794881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d63cd9fd6585bc4c96e86b12cc2cba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
+  _moveSpeed: 2
   _deathEffect: {fileID: 4397544317080297143, guid: 0fe91b2474ac7af41a2a904de8963206, type: 3}

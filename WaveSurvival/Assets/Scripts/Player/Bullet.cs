@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyController>()?.TakeDamage(1);
+            other.GetComponent<EnemyBase>()?.TakeDamage(1);
             Destroy(gameObject);
         }
     }
