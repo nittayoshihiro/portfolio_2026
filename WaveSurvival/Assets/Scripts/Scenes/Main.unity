@@ -8056,6 +8056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MediumEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4618384891860867673, guid: cfe6fab277491f847a901ac3666ef8af, type: 3}
+      propertyPath: _bulletPrefab
+      value: 
+      objectReference: {fileID: 6755084369443170144, guid: 9626ad5751f533a4db77cab1705d735b, type: 3}
     - target: {fileID: 7544677503056361443, guid: cfe6fab277491f847a901ac3666ef8af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.93

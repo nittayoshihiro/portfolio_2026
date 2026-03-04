@@ -1,10 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LargeEnemy : EnemyBase
 {
     [SerializeField] private float _moveSpeed = 1.2f;
     [SerializeField] private GameObject _smallEnemyPrefab;
     [SerializeField] private float _spawnInterval = 3f;
+    [SerializeField] private Transform _spawnPoint1;
+    [SerializeField] private Transform _spawnPoint2;
+    [SerializeField] private int _maxChildCount = 6;
     [SerializeField] private int _maxSpawnCount = 5;
     [SerializeField] private GameObject _deathEffect;
 
@@ -25,19 +28,54 @@ public class LargeEnemy : EnemyBase
     {
         if (_player == null) return;
 
-        // �������ǔ�
+        // ゆっくり追尾
         Vector2 direction = (_player.position - transform.position).normalized;
         _rb.linearVelocity = direction * _moveSpeed;
 
-        // ���G����
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // ↓向きスプライト用補正
+        transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
+
+        // 小敵生成
         _spawnTimer += Time.deltaTime;
 
         if (_spawnTimer >= _spawnInterval && _spawnedCount < _maxSpawnCount)
         {
-            Instantiate(_smallEnemyPrefab, transform.position, Quaternion.identity);
+            SpawnSmallEnemy();
             _spawnTimer = 0f;
             _spawnedCount++;
         }
+    }
+
+    void SpawnSmallEnemy()
+    {
+        // 子の数制限（小敵のみカウント）
+        int childCount = 0;
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<SmallEnemy>() != null)
+                childCount++;
+        }
+
+        if (childCount >= _maxChildCount) return;
+
+        GameObject small = Instantiate(
+            _smallEnemyPrefab,
+            _spawnPoint1.position,
+            Quaternion.identity
+        );
+
+        //子にする
+        small.transform.parent = transform;
+
+        small = Instantiate(
+            _smallEnemyPrefab,
+            _spawnPoint2.position,
+            Quaternion.identity
+        );
+
+        //子にする
+        small.transform.parent = transform;
     }
 
     protected override void Die()

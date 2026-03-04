@@ -6,10 +6,12 @@ public class MediumEnemy : EnemyBase
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _fireInterval = 2f;
     [SerializeField] private GameObject _deathEffect;
+    [SerializeField] private Transform _firePoint;
 
     private float _fireTimer;
     private Rigidbody2D _rb;
     private Transform _player;
+    private int _maxBulletCount = 3;
 
     protected override void Start()
     {
@@ -27,13 +29,30 @@ public class MediumEnemy : EnemyBase
         Vector2 direction = (_player.position - transform.position).normalized;
         _rb.linearVelocity = direction * _moveSpeed;
 
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // ↓向きスプライト用補正
+        transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
+
         // 弾発射
         _fireTimer += Time.deltaTime;
         if (_fireTimer >= _fireInterval)
         {
-            Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+            Shoot();
             _fireTimer = 0f;
         }
+    }
+
+    void Shoot()
+    {
+        if (transform.childCount >= _maxBulletCount) return;
+
+        Vector2 direction = (_player.position - transform.position).normalized;
+
+        GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+
+        bullet.transform.parent = transform;
+
+        bullet.GetComponent<EnemyBullet>().Init(direction);
     }
 
     protected override void Die()

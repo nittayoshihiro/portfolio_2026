@@ -22,6 +22,11 @@ public class SmallEnemy : EnemyBase
 
         Vector2 direction = (_player.position - transform.position).normalized;
         _rb.linearVelocity = direction * _moveSpeed;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // ↓向きスプライト用補正
+        transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
     }
 
     protected override void Die()
