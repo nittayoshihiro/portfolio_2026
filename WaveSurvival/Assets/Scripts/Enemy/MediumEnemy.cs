@@ -11,7 +11,6 @@ public class MediumEnemy : EnemyBase
     private float _fireTimer;
     private Rigidbody2D _rb;
     private Transform _player;
-    private int _maxBulletCount = 3;
 
     protected override void Start()
     {
@@ -44,15 +43,9 @@ public class MediumEnemy : EnemyBase
 
     void Shoot()
     {
-        if (transform.childCount >= _maxBulletCount) return;
-
         Vector2 direction = (_player.position - transform.position).normalized;
-
-        GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-
-        bullet.transform.parent = transform;
-
-        bullet.GetComponent<EnemyBullet>().Init(direction);
+        GameObject bullet = Instantiate(_bulletPrefab,_firePoint.position,Quaternion.identity);
+        bullet.GetComponent<EnemyBullet>().SetDirection(direction);
     }
 
     protected override void Die()

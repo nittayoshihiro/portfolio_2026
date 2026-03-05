@@ -12,7 +12,6 @@ public class LargeEnemy : EnemyBase
     [SerializeField] private GameObject _deathEffect;
 
     private float _spawnTimer;
-    private int _spawnedCount;
     private Rigidbody2D _rb;
     private Transform _player;
 
@@ -39,43 +38,27 @@ public class LargeEnemy : EnemyBase
         // 小敵生成
         _spawnTimer += Time.deltaTime;
 
-        if (_spawnTimer >= _spawnInterval && _spawnedCount < _maxSpawnCount)
+        if (_spawnTimer >= _spawnInterval)
         {
             SpawnSmallEnemy();
             _spawnTimer = 0f;
-            _spawnedCount++;
         }
     }
 
     void SpawnSmallEnemy()
     {
-        // 子の数制限（小敵のみカウント）
-        int childCount = 0;
-        foreach (Transform child in transform)
-        {
-            if (child.GetComponent<SmallEnemy>() != null)
-                childCount++;
-        }
-
-        if (childCount >= _maxChildCount) return;
-
-        GameObject small = Instantiate(
+        Instantiate(
             _smallEnemyPrefab,
             _spawnPoint1.position,
             Quaternion.identity
         );
 
-        //子にする
-        small.transform.parent = transform;
-
-        small = Instantiate(
+        Instantiate(
             _smallEnemyPrefab,
             _spawnPoint2.position,
             Quaternion.identity
         );
 
-        //子にする
-        small.transform.parent = transform;
     }
 
     protected override void Die()

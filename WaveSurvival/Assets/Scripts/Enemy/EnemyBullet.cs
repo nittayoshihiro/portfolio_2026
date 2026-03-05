@@ -6,11 +6,21 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private int _damage = 1;
 
     private Rigidbody2D _rb;
+    private Vector2 _direction;
 
-    public void Init(Vector2 direction)
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _rb.linearVelocity = direction.normalized * _speed;
+    }
+
+    public void SetDirection(Vector2 dir)
+    {
+        _direction = dir.normalized;
+    }
+
+    void Start()
+    {
+        _rb.linearVelocity = _direction * _speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
