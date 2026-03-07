@@ -7,6 +7,7 @@ public class MediumEnemy : EnemyBase
     [SerializeField] private float _fireInterval = 2f;
     [SerializeField] private GameObject _deathEffect;
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private AudioClip _shootSE;
 
     private float _fireTimer;
     private Rigidbody2D _rb;
@@ -43,6 +44,7 @@ public class MediumEnemy : EnemyBase
 
     void Shoot()
     {
+        SEManager.Instance.PlaySE(_shootSE);
         Vector2 direction = (_player.position - transform.position).normalized;
         GameObject bullet = Instantiate(_bulletPrefab,_firePoint.position,Quaternion.identity);
         bullet.GetComponent<EnemyBullet>().SetDirection(direction);
@@ -53,7 +55,6 @@ public class MediumEnemy : EnemyBase
         GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
 
-        GameManager.Instance.PlayEnemyDeath();
         GameManager.Instance.AddScore(30);
 
         base.Die();

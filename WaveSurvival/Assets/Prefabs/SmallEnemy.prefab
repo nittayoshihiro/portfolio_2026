@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 121763161215086426}
   - component: {fileID: 7853732153240180753}
   - component: {fileID: 682466581897909671}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -166,5 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 3
+  _spriteRenderer: {fileID: 8118929918259970907}
+  _normalSprite: {fileID: 8414478535512612329, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
+  _damageSprite: {fileID: 4326287474489854147, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   _moveSpeed: 2
-  _deathEffect: {fileID: 4397544317080297143, guid: 0fe91b2474ac7af41a2a904de8963206, type: 3}
+  _deathEffect: {fileID: 8733826520260558534, guid: 2351d5803f307b74381992b62c1c3d6b, type: 3}

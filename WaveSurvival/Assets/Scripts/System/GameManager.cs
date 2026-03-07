@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameUI;
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _waveText;
-    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _enemyDeathSE;
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private PlayerController _player;
@@ -108,9 +107,10 @@ public class GameManager : MonoBehaviour
         _gameUI.SetActive(true);
     }
 
-    public void PlayEnemyDeath()
+    public void PlayEnemyDamage()
     {
-        _audioSource.PlayOneShot(_enemyDeathSE);
+
+        SEManager.Instance.PlaySE(_enemyDeathSE);
     }
 
     public void SetBGMVolume(float value)

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671334869096942348}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6070342815531980948}
   - component: {fileID: 5137270154503489210}
   - component: {fileID: 1691976213698512229}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LargeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -136,14 +136,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 27
+  _spriteRenderer: {fileID: 2608267915657298629}
+  _normalSprite: {fileID: -8421458170528590454, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
+  _damageSprite: {fileID: 3714015224569861163, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   _moveSpeed: 1.2
   _smallEnemyPrefab: {fileID: 5553103858841794881, guid: 7900bd28e21a8374ba38293059f2d882, type: 3}
   _spawnInterval: 3
   _spawnPoint1: {fileID: 4671334869096942348}
   _spawnPoint2: {fileID: 1073790670342777611}
-  _maxChildCount: 5
-  _maxSpawnCount: 5
-  _deathEffect: {fileID: 4397544317080297143, guid: 0fe91b2474ac7af41a2a904de8963206, type: 3}
+  _spawnSE: {fileID: 8300000, guid: 54d609a98bff2da4db2f530a4ef47f15, type: 3}
+  _deathEffect: {fileID: 4447008885760754807, guid: 5043dda7f2f7ae9418fdb726bd50cb71, type: 3}
 --- !u!50 &5137270154503489210
 Rigidbody2D:
   serializedVersion: 5
@@ -216,7 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1073790670342777611}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

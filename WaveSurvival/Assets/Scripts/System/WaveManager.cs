@@ -3,44 +3,125 @@ using static GameManager;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
-    [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private float _timeBetweenWaves = 5f;
+    [Header("Enemy Prefabs")]
+    [SerializeField] private GameObject _smallEnemy;
+    [SerializeField] private GameObject _mediumEnemy;
+    [SerializeField] private GameObject _largeEnemy;
 
-    private int _currentWave = 0;
-    private float _timer;
+    [Header("Spawn Points")]
+    [SerializeField] private Transform[] _spawnPoints;
+
+    [Header("Wave Settings")]
+    [SerializeField] private float _waveDuration = 40f;
+    [SerializeField] private float _spawnInterval = 2f;
+
+    private float _waveTimer;
+    private float _spawnTimer;
+    private int _currentWave = 1;
+    private bool _waveActive = false;
+    private float _enemyCheckDelay = 2f;
+
+    void Start()
+    {
+        StartWave();
+    }
 
     void Update()
     {
         if (GameManager.Instance.CurrentGameState() != GameState.Playing)
-        {
             return;
-        }
 
-        _timer += Time.deltaTime;
+        if (!_waveActive)
+            return;
 
-        if (_timer >= _timeBetweenWaves)
+        _waveTimer += Time.deltaTime;
+        _spawnTimer += Time.deltaTime;
+
+        // 敵生成
+        if (_spawnTimer >= _spawnInterval)
         {
-            StartNextWave();
-            _timer = 0f;
+            SpawnEnemy();
+            _spawnTimer = 0f;
         }
+
+        // Wave時間終了
+        if (_waveTimer >= _waveDuration)
+        {
+            EndWave();
+        }
+
+        // 敵全滅チェック
+        if (_waveTimer > _enemyCheckDelay)
+        {
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+            {
+                EndWave();
+            }
+        }
+    }
+
+    void StartWave()
+    {
+        _waveActive = true;
+        _waveTimer = 0f;
+        _spawnTimer = 0f;
+
+        GameManager.Instance.NextWave();
+    }
+
+    void EndWave()
+    {
+        if (!_waveActive) return;
+
+        _waveActive = false;
+
+        float remainTime = _waveDuration - _waveTimer;
+        int bonus = Mathf.Max(0, Mathf.RoundToInt(remainTime * 10));
+
+        GameManager.Instance.AddScore(bonus);
+
+        Invoke(nameof(StartNextWave), 3f);
     }
 
     void StartNextWave()
     {
         _currentWave++;
 
-        int enemyCount = _currentWave + 2;
-
-        for (int i = 0; i < enemyCount; i++)
+        if (_currentWave > 5)
         {
-            SpawnEnemy();
+            GameManager.Instance.GameOver();
+            return;
         }
+
+        StartWave();
     }
 
     void SpawnEnemy()
     {
-        int index = Random.Range(0, _spawnPoints.Length);
-        Instantiate(_enemyPrefab, _spawnPoints[index].position, Quaternion.identity);
+        int spawnIndex = Random.Range(0, _spawnPoints.Length);
+        Transform spawn = _spawnPoints[spawnIndex];
+
+        GameObject enemyToSpawn;
+
+        int rand = Random.Range(0, 100);
+
+        if (_currentWave <= 2)
+        {
+            enemyToSpawn = _smallEnemy;
+        }
+        else if (rand < 70)
+        {
+            enemyToSpawn = _smallEnemy;
+        }
+        else if (rand < 90)
+        {
+            enemyToSpawn = _mediumEnemy;
+        }
+        else
+        {
+            enemyToSpawn = _largeEnemy;
+        }
+
+        Instantiate(enemyToSpawn, spawn.position, Quaternion.identity);
     }
 }

@@ -34,7 +34,6 @@ public class SmallEnemy : EnemyBase
         GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
 
-        GameManager.Instance.PlayEnemyDeath();
         GameManager.Instance.AddScore(10);
 
         base.Die(); //ç≈å„Ç…Destroy

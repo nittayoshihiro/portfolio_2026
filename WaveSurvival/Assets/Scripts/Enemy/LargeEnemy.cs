@@ -7,8 +7,7 @@ public class LargeEnemy : EnemyBase
     [SerializeField] private float _spawnInterval = 3f;
     [SerializeField] private Transform _spawnPoint1;
     [SerializeField] private Transform _spawnPoint2;
-    [SerializeField] private int _maxChildCount = 6;
-    [SerializeField] private int _maxSpawnCount = 5;
+    [SerializeField] private AudioClip _spawnSE;
     [SerializeField] private GameObject _deathEffect;
 
     private float _spawnTimer;
@@ -47,6 +46,7 @@ public class LargeEnemy : EnemyBase
 
     void SpawnSmallEnemy()
     {
+        SEManager.Instance.PlaySE(_spawnSE);
         Instantiate(
             _smallEnemyPrefab,
             _spawnPoint1.position,
@@ -66,7 +66,6 @@ public class LargeEnemy : EnemyBase
         GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1f);
 
-        GameManager.Instance.PlayEnemyDeath();
         GameManager.Instance.AddScore(100);
         base.Die();
     }

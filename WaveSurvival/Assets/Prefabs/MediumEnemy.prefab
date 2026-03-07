@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4618384891860867673}
   - component: {fileID: 5144625515408416659}
   - component: {fileID: 7122825418440434410}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MediumEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -104,11 +104,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 3
+  _spriteRenderer: {fileID: 2034254757455619093}
+  _normalSprite: {fileID: -1147401495359466748, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
+  _damageSprite: {fileID: -7844560889915226194, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   _moveSpeed: 2
   _bulletPrefab: {fileID: 6755084369443170144, guid: 9626ad5751f533a4db77cab1705d735b, type: 3}
   _fireInterval: 2
-  _deathEffect: {fileID: 4397544317080297143, guid: 0fe91b2474ac7af41a2a904de8963206, type: 3}
+  _deathEffect: {fileID: 4842328199956636775, guid: ce2521e3716c0154886ec6d0a7514dc8, type: 3}
   _firePoint: {fileID: 3805336518532911941}
+  _shootSE: {fileID: 8300000, guid: ca6086c31f21f564fba0e83d9e6875f8, type: 3}
 --- !u!50 &5144625515408416659
 Rigidbody2D:
   serializedVersion: 5
@@ -181,7 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3805336518532911941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FilePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
