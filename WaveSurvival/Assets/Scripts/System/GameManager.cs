@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public GameState CurrentGameState() { return _currentState; }
     private int _score = 0;
     private int _currentWave = 0;
+    private float _waveClearInputDelay = 1.5f;
+    private float _waveClearTimer = 0f;
 
 
     void Awake()
@@ -62,9 +64,14 @@ public class GameManager : MonoBehaviour
                 _waveTimerText.text = _waveManager.GetWaveTimer().ToString("F2");
                 break;
             case GameState.WaveClear:
-                if (Input.GetMouseButtonDown(0))
+                _waveClearTimer += Time.unscaledDeltaTime;
+
+                if (_waveClearTimer > _waveClearInputDelay)
                 {
-                    StartNextWave();
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        StartNextWave();
+                    }
                 }
                 break;
             case GameState.Result:
@@ -74,14 +81,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void WaveClear(int bonus)
+    public void WaveClear(int timeBonus)
     {
         _currentState = GameState.WaveClear;
 
-        AddScore(bonus);
-        _bonusText.text = "BONUS +" + bonus;
+        int clearBonus = 500;
+
+        int hpBonus = _player.GetHP() * 50;
+
+        int totalBonus = clearBonus + hpBonus + timeBonus;
+
+        AddScore(totalBonus);
+
+        _bonusText.text =
+            "CLEAR +" + clearBonus +
+            "\nHP BONUS +" + hpBonus +
+            "\nTIME BONUS +" + timeBonus;
 
         _wavePanel.SetActive(true);
+        _waveClearTimer = 0f;
 
         Time.timeScale = 0.0f;
     }

@@ -58,6 +58,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public int GetHP()
+    {
+        return _currentHP;
+    }
+
     //’e”­Ëˆ—
     private void Fire()
     {

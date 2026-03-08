@@ -14,6 +14,7 @@ public class WaveManager : MonoBehaviour
     [Header("Wave Settings")]
     [SerializeField] private float _waveDuration = 30f;
     [SerializeField] private float _spawnInterval = 2f;
+    [SerializeField] private float _spawnStopTime = 15f;
 
     private float _waveTimer;
     private float _spawnTimer;
@@ -40,10 +41,15 @@ public class WaveManager : MonoBehaviour
         _spawnTimer += Time.deltaTime;
 
         // ìGê∂ê¨
-        if (_spawnTimer >= _spawnInterval)
+        float remainingTime = _waveDuration - _waveTimer;
+
+        if (remainingTime > _spawnStopTime)
         {
-            SpawnEnemy();
-            _spawnTimer = 0f;
+            if (_spawnTimer >= _spawnInterval)
+            {
+                SpawnEnemy();
+                _spawnTimer = 0f;
+            }
         }
 
         // Waveéûä‘èIóπ
@@ -83,9 +89,9 @@ public class WaveManager : MonoBehaviour
         _waveActive = false;
 
         float remainTime = _waveDuration - _waveTimer;
-        int bonus = Mathf.Max(0, Mathf.RoundToInt(remainTime * 10));
+        int timeBonus = Mathf.Max(0, Mathf.RoundToInt(remainTime * 10));
 
-        GameManager.Instance.WaveClear(bonus);
+        GameManager.Instance.WaveClear(timeBonus);
     }
 
     public void StartNextWaveFromGameManager()
