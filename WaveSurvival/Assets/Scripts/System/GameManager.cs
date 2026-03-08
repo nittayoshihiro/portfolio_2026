@@ -11,22 +11,27 @@ public class GameManager : MonoBehaviour
     {
         Title,
         Playing,
+        WaveClear,
         Result
     }
 
     [SerializeField] private GameObject _titlePanel;
     [SerializeField] private GameObject _resultPanel;
+    [SerializeField] private GameObject _wavePanel;
     [SerializeField] private GameObject _gameUI;
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _waveText;
+    [SerializeField] private TMP_Text _waveTimerText;
+    [SerializeField] private TMP_Text _bonusText;
+    [SerializeField] private TMP_Text _resultScoreText;
+    [SerializeField] private WaveManager _waveManager;
     [SerializeField] private AudioClip _enemyDeathSE;
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private PlayerController _player;
     private GameState _currentState;
     public GameState CurrentGameState() { return _currentState; }
     private int _score = 0;
-    private int _currentWave = 1;
-   
+    private int _currentWave = 0;
 
 
     void Awake()
@@ -49,7 +54,47 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        switch (_currentState)
+        {
+            case GameState.Title:
+                break;
+            case GameState.Playing:
+                _waveTimerText.text = _waveManager.GetWaveTimer().ToString("F2");
+                break;
+            case GameState.WaveClear:
+                if (Input.GetMouseButtonDown(0))
+                {
+                    StartNextWave();
+                }
+                break;
+            case GameState.Result:
+                break;
+            default:
+                break;
+        }
+    }
 
+    public void WaveClear(int bonus)
+    {
+        _currentState = GameState.WaveClear;
+
+        AddScore(bonus);
+        _bonusText.text = "BONUS +" + bonus;
+
+        _wavePanel.SetActive(true);
+
+        Time.timeScale = 0.0f;
+    }
+
+    void StartNextWave()
+    {
+        Time.timeScale = 1f;
+
+        _wavePanel.SetActive(false);
+
+        _currentState = GameState.Playing;
+
+        _waveManager.StartNextWaveFromGameManager();
     }
 
     public void StartGame()
@@ -58,6 +103,7 @@ public class GameManager : MonoBehaviour
 
         _titlePanel.SetActive(false);
         _resultPanel.SetActive(false);
+        _wavePanel.SetActive(false);
         _gameUI.SetActive(true);
 
         Time.timeScale = 1f;
@@ -80,6 +126,7 @@ public class GameManager : MonoBehaviour
         _currentState = GameState.Result;
 
         _resultPanel.SetActive(true);
+        _resultScoreText.text = "Score: " + _score;
         _gameUI.SetActive(false);
 
         Time.timeScale = 0f;

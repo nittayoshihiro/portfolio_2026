@@ -34,11 +34,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        RotateToMouse();
+
         if (GameManager.Instance.CurrentGameState() != GameState.Playing)
         {
             return;
         }
+        //É}ÉEÉX
+        RotateToMouse();
 
         //à⁄ìÆèàóù
         _input.x = Input.GetAxisRaw("Horizontal");
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(InvincibleCoroutine());
     }
 
-    private System.Collections.IEnumerator InvincibleCoroutine()
+    private IEnumerator InvincibleCoroutine()
     {
         _isInvincible = true;
 

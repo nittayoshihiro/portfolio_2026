@@ -12,7 +12,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Transform[] _spawnPoints;
 
     [Header("Wave Settings")]
-    [SerializeField] private float _waveDuration = 40f;
+    [SerializeField] private float _waveDuration = 30f;
     [SerializeField] private float _spawnInterval = 2f;
 
     private float _waveTimer;
@@ -20,6 +20,7 @@ public class WaveManager : MonoBehaviour
     private int _currentWave = 1;
     private bool _waveActive = false;
     private float _enemyCheckDelay = 2f;
+    //private bool _waitingForNextWave = false;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
+
         if (GameManager.Instance.CurrentGameState() != GameState.Playing)
             return;
 
@@ -60,6 +62,11 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public float GetWaveTimer()
+    {
+        return Mathf.Max(0, _waveDuration - _waveTimer);
+    }
+
     void StartWave()
     {
         _waveActive = true;
@@ -78,9 +85,12 @@ public class WaveManager : MonoBehaviour
         float remainTime = _waveDuration - _waveTimer;
         int bonus = Mathf.Max(0, Mathf.RoundToInt(remainTime * 10));
 
-        GameManager.Instance.AddScore(bonus);
+        GameManager.Instance.WaveClear(bonus);
+    }
 
-        Invoke(nameof(StartNextWave), 3f);
+    public void StartNextWaveFromGameManager()
+    {
+        StartNextWave();
     }
 
     void StartNextWave()
