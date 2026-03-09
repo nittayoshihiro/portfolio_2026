@@ -139,7 +139,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2608267915657298629}
   _normalSprite: {fileID: -8421458170528590454, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   _damageSprite: {fileID: 3714015224569861163, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
-  _moveSpeed: 1.2
+  _moveSpeed: 1
   _smallEnemyPrefab: {fileID: 5553103858841794881, guid: 7900bd28e21a8374ba38293059f2d882, type: 3}
   _spawnInterval: 3
   _spawnPoint1: {fileID: 4671334869096942348}

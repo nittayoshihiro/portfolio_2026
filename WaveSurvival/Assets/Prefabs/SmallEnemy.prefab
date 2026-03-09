@@ -169,5 +169,5 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 8118929918259970907}
   _normalSprite: {fileID: 8414478535512612329, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   _damageSprite: {fileID: 4326287474489854147, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
-  _moveSpeed: 2
+  _moveSpeed: 3
   _deathEffect: {fileID: 8733826520260558534, guid: 2351d5803f307b74381992b62c1c3d6b, type: 3}

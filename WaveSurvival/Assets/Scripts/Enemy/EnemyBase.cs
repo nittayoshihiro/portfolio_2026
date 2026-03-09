@@ -12,6 +12,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Start()
     {
         _currentHP = _maxHP;
+        WaveManager.Instance.RegisterEnemy();
     }
 
     public virtual void TakeDamage(int damage)
@@ -49,6 +50,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Die()
     {
+        WaveManager.Instance.RemoveEnemy();
         Destroy(gameObject);
     }
     

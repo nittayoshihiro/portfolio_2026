@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _resultPanel;
     [SerializeField] private GameObject _wavePanel;
     [SerializeField] private GameObject _gameUI;
+    [SerializeField] private GameObject _surviveText;
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _waveText;
     [SerializeField] private TMP_Text _waveTimerText;
     [SerializeField] private TMP_Text _bonusText;
+    [SerializeField] private TMP_Text _resultText;
     [SerializeField] private TMP_Text _resultScoreText;
     [SerializeField] private WaveManager _waveManager;
     [SerializeField] private AudioClip _enemyDeathSE;
@@ -81,6 +83,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ShowSurviveMessage()
+    {
+        _surviveText.SetActive(true);
+    }
+
     public void WaveClear(int timeBonus)
     {
         _currentState = GameState.WaveClear;
@@ -106,8 +113,9 @@ public class GameManager : MonoBehaviour
 
     void StartNextWave()
     {
-        Time.timeScale = 1f;
 
+        Time.timeScale = 1f;
+        _surviveText.SetActive(false);
         _wavePanel.SetActive(false);
 
         _currentState = GameState.Playing;
@@ -144,6 +152,19 @@ public class GameManager : MonoBehaviour
         _currentState = GameState.Result;
 
         _resultPanel.SetActive(true);
+        _resultText.text = "Game Over";
+        _resultScoreText.text = "Score: " + _score;
+        _gameUI.SetActive(false);
+
+        Time.timeScale = 0f;
+    }
+
+    public void GameClear()
+    {
+        _currentState = GameState.Result;
+
+        _resultPanel.SetActive(true);
+        _resultText.text = "Game Clear";
         _resultScoreText.text = "Score: " + _score;
         _gameUI.SetActive(false);
 

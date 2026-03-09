@@ -3,6 +3,7 @@ using static GameManager;
 
 public class WaveManager : MonoBehaviour
 {
+    public static WaveManager Instance;
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject _smallEnemy;
     [SerializeField] private GameObject _mediumEnemy;
@@ -20,8 +21,20 @@ public class WaveManager : MonoBehaviour
     private float _spawnTimer;
     private int _currentWave = 1;
     private bool _waveActive = false;
-    private float _enemyCheckDelay = 2f;
-    //private bool _waitingForNextWave = false;
+    private bool _survivePhase = false;
+    private int _enemyCount = 0;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // 2つ目以降を消す
+        }
+    }
 
     void Start()
     {
@@ -52,6 +65,12 @@ public class WaveManager : MonoBehaviour
             }
         }
 
+        if (remainingTime <= _spawnStopTime && !_survivePhase)
+        {
+            _survivePhase = true;
+            GameManager.Instance.ShowSurviveMessage();
+        }
+
         // Wave時間終了
         if (_waveTimer >= _waveDuration)
         {
@@ -59,9 +78,9 @@ public class WaveManager : MonoBehaviour
         }
 
         // 敵全滅チェック
-        if (_waveTimer > _enemyCheckDelay)
+        if (_waveTimer > _spawnStopTime)
         {
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+            if (_enemyCount == 0)
             {
                 EndWave();
             }
@@ -75,6 +94,7 @@ public class WaveManager : MonoBehaviour
 
     void StartWave()
     {
+        _survivePhase = false;
         _waveActive = true;
         _waveTimer = 0f;
         _spawnTimer = 0f;
@@ -91,6 +111,12 @@ public class WaveManager : MonoBehaviour
         float remainTime = _waveDuration - _waveTimer;
         int timeBonus = Mathf.Max(0, Mathf.RoundToInt(remainTime * 10));
 
+        // 敵全削除
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
+
         GameManager.Instance.WaveClear(timeBonus);
     }
 
@@ -105,7 +131,7 @@ public class WaveManager : MonoBehaviour
 
         if (_currentWave > 5)
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.GameClear();
             return;
         }
 
@@ -118,10 +144,10 @@ public class WaveManager : MonoBehaviour
         Transform spawn = _spawnPoints[spawnIndex];
 
         GameObject enemyToSpawn;
-
+        float remainingTime = _waveDuration - _waveTimer;
         int rand = Random.Range(0, 100);
 
-        if (_currentWave <= 2)
+        if (_currentWave < 2)
         {
             enemyToSpawn = _smallEnemy;
         }
@@ -139,5 +165,14 @@ public class WaveManager : MonoBehaviour
         }
 
         Instantiate(enemyToSpawn, spawn.position, Quaternion.identity);
+    }
+    public void RegisterEnemy()
+    {
+        _enemyCount++;
+    }
+
+    public void RemoveEnemy()
+    {
+        _enemyCount--;
     }
 }
