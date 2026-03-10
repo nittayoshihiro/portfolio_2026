@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text _bonusText;
     [SerializeField] private TMP_Text _resultText;
     [SerializeField] private TMP_Text _resultScoreText;
-    [SerializeField] private WaveManager _waveManager;
     [SerializeField] private AudioClip _enemyDeathSE;
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private PlayerController _player;
@@ -63,7 +62,7 @@ public class GameManager : MonoBehaviour
             case GameState.Title:
                 break;
             case GameState.Playing:
-                _waveTimerText.text = _waveManager.GetWaveTimer().ToString("F2");
+                _waveTimerText.text = WaveManager.Instance.GetWaveTimer().ToString("F2");
                 break;
             case GameState.WaveClear:
                 _waveClearTimer += Time.unscaledDeltaTime;
@@ -120,7 +119,7 @@ public class GameManager : MonoBehaviour
 
         _currentState = GameState.Playing;
 
-        _waveManager.StartNextWaveFromGameManager();
+        WaveManager.Instance.StartNextWaveFromGameManager();
     }
 
     public void StartGame()
@@ -175,12 +174,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        // 敵全削除
-        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            Destroy(enemy);
-        }
-
         // プレイヤーHPリセット
         _player.ResetPlayer();
 
@@ -188,6 +181,9 @@ public class GameManager : MonoBehaviour
         _scoreText.text = "Score: 0";
 
         _currentState = GameState.Playing;
+        _currentWave = 0;
+        WaveManager.Instance.ResetWave();
+        WaveManager.Instance.StartWave();
 
         _resultPanel.SetActive(false);
         _gameUI.SetActive(true);

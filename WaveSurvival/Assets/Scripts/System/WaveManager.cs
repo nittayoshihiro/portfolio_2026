@@ -92,7 +92,7 @@ public class WaveManager : MonoBehaviour
         return Mathf.Max(0, _waveDuration - _waveTimer);
     }
 
-    void StartWave()
+    public void StartWave()
     {
         _survivePhase = false;
         _waveActive = true;
@@ -116,6 +116,7 @@ public class WaveManager : MonoBehaviour
         {
             Destroy(enemy);
         }
+        _enemyCount = 0;
 
         GameManager.Instance.WaveClear(timeBonus);
     }
@@ -174,5 +175,18 @@ public class WaveManager : MonoBehaviour
     public void RemoveEnemy()
     {
         _enemyCount--;
+    }
+
+    public void ResetWave()
+    {
+        // “G‘Síœ
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
+        _enemyCount = 0;
+        _currentWave = 0;
+        _waveTimer = 0;
+        _waveActive = false;
     }
 }
