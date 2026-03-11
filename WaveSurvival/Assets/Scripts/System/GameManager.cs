@@ -5,7 +5,8 @@ using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
+    private GameManager() { }
 
     public enum GameState
     {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _waveText;
     [SerializeField] private TMP_Text _waveTimerText;
+    [SerializeField] private TMP_Text _waveClearText;
     [SerializeField] private TMP_Text _bonusText;
     [SerializeField] private TMP_Text _resultText;
     [SerializeField] private TMP_Text _resultScoreText;
@@ -99,6 +101,7 @@ public class GameManager : MonoBehaviour
 
         AddScore(totalBonus);
 
+        _waveClearText.text = "WAVE "+_currentWave+" CLEAR";
         _bonusText.text =
             "CLEAR +" + clearBonus +
             "\nHP BONUS +" + hpBonus +

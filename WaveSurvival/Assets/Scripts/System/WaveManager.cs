@@ -3,7 +3,7 @@ using static GameManager;
 
 public class WaveManager : MonoBehaviour
 {
-    public static WaveManager Instance;
+    public static WaveManager Instance { get; private set; }
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject _smallEnemy;
     [SerializeField] private GameObject _mediumEnemy;

@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireCooldown = 0.3f;
-    [SerializeField] private TMP_Text _hpText;
     [SerializeField] private ParticleSystem _muzzleEffect;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _shootSE;
@@ -23,12 +22,14 @@ public class PlayerController : MonoBehaviour
     private float _fireTimer;
     private int _currentHP;
     private bool _isInvincible;
+    private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rb;
     private Vector2 _input;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+       _spriteRenderer = GetComponent<SpriteRenderer>();
         _currentHP = _maxHP;
     }
 
@@ -85,8 +86,7 @@ public class PlayerController : MonoBehaviour
 
         _currentHP -= damage;
         _audioSource.PlayOneShot(_damageSE);
-        StartCoroutine(FlashRed(this.GetComponent<SpriteRenderer>()));
-        UpdateHPUI();
+        StartCoroutine(FlashRed(_spriteRenderer));
         
 
         if (_currentHP <= 0)
@@ -106,23 +106,30 @@ public class PlayerController : MonoBehaviour
         _isInvincible = false;
     }
 
-    void UpdateHPUI()
-    {
-        _hpText.text = "HP: " + _currentHP;
-    }
-
     public void ResetPlayer()
     {
         _currentHP = _maxHP;
-        UpdateHPUI();
         transform.position = Vector3.zero;
+        _spriteRenderer.color = Color.white;
     }
 
     IEnumerator FlashRed(SpriteRenderer spriteRenderer)
     {
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        spriteRenderer.color = Color.white;
+        switch (_currentHP)
+        {
+            case 0:
+            case 1:
+                spriteRenderer.color = Color.red;
+                break;
+            case 2:
+                spriteRenderer.color = Color.yellow;
+                break;
+            case 3:
+                spriteRenderer.color = Color.white;
+                break;
+        }
     }
 
     private void RotateToMouse()
