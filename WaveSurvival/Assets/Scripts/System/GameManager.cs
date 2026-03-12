@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Audio;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text _bonusText;
     [SerializeField] private TMP_Text _resultText;
     [SerializeField] private TMP_Text _resultScoreText;
+    [SerializeField] private TMP_Text _resultRankText;
     [SerializeField] private AudioClip _enemyDeathSE;
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private PlayerController _player;
@@ -155,7 +157,8 @@ public class GameManager : MonoBehaviour
 
         _resultPanel.SetActive(true);
         _resultText.text = "Game Over";
-        _resultScoreText.text = "Score: " + _score;
+        StartCoroutine(CountUpScore(_score));
+        _resultRankText.text = "Rank  "+GetRank(_score);
         _gameUI.SetActive(false);
 
         Time.timeScale = 0f;
@@ -167,7 +170,8 @@ public class GameManager : MonoBehaviour
 
         _resultPanel.SetActive(true);
         _resultText.text = "Game Clear";
-        _resultScoreText.text = "Score: " + _score;
+        StartCoroutine(CountUpScore(_score));
+        _resultRankText.text = "Rank  " + GetRank(_score);
         _gameUI.SetActive(false);
 
         Time.timeScale = 0f;
@@ -206,6 +210,31 @@ public class GameManager : MonoBehaviour
     public void SetSEVolume(float value)
     {
         _mixer.SetFloat("SEVolume", Mathf.Log10(value) * 20);
+    }
+
+    IEnumerator CountUpScore(int finalScore)
+    {
+        int displayedScore = 0;
+
+        while (displayedScore < finalScore)
+        {
+            displayedScore += Mathf.Max(1, finalScore / 200);
+
+            if (displayedScore > finalScore)
+                displayedScore = finalScore;
+
+            _resultScoreText.text = "Score: " + displayedScore.ToString("D4");
+
+            yield return null;
+        }
+    }
+
+    private string GetRank(int score)
+    {
+        if (score >= 4500) return "S";
+        if (score >= 4000) return "A";
+        if (score >= 3500) return "B";
+        return "C";
     }
 
 }
