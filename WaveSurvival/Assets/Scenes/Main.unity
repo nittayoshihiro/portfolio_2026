@@ -1790,7 +1790,7 @@ GameObject:
   - component: {fileID: 1168854927}
   - component: {fileID: 1168854926}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: ClickNextText (TMP) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1988,6 +1988,7 @@ MonoBehaviour:
   _titlePanel: {fileID: 1706722943}
   _resultPanel: {fileID: 397652583}
   _wavePanel: {fileID: 1725974083}
+  _clickNextText: {fileID: 1168854924}
   _gameUI: {fileID: 2011703657}
   _surviveText: {fileID: 808817160}
   _scoreText: {fileID: 22473331}

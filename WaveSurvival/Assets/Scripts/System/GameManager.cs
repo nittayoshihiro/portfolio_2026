@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _titlePanel;
     [SerializeField] private GameObject _resultPanel;
     [SerializeField] private GameObject _wavePanel;
+    [SerializeField] private GameObject _clickNextText;
     [SerializeField] private GameObject _gameUI;
     [SerializeField] private GameObject _surviveText;
     [SerializeField] private TMP_Text _scoreText;
@@ -73,9 +74,11 @@ public class GameManager : MonoBehaviour
 
                 if (_waveClearTimer > _waveClearInputDelay)
                 {
+                    _clickNextText.SetActive(true);
                     if (Input.GetMouseButtonDown(0))
                     {
                         StartNextWave();
+                        _clickNextText.SetActive(false);
                     }
                 }
                 break;
