@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
         _resultText.text = "Game Over";
         StartCoroutine(CountUpScore(_score));
         _resultRankText.text = "Rank  "+GetRank(_score);
+        _surviveText.SetActive(false);
         _gameUI.SetActive(false);
 
         Time.timeScale = 0f;
@@ -172,6 +173,7 @@ public class GameManager : MonoBehaviour
         _resultText.text = "Game Clear";
         StartCoroutine(CountUpScore(_score));
         _resultRankText.text = "Rank  " + GetRank(_score);
+        _surviveText.SetActive(false);
         _gameUI.SetActive(false);
 
         Time.timeScale = 0f;
