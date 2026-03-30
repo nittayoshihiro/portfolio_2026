@@ -36,9 +36,4 @@ flowchart TD
     G --> B
     C -->|Yes| H[経路なし]
 ```
-## Build
 
-SDL2 が必要です。
-
-Windows（MinGW例）:
-g++ main.cpp -lSDL2 -o AStarDemo
