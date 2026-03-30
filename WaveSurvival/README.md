@@ -2,19 +2,19 @@
 
 ## Gameplay
 
-ゲームプレイ動画
-[![プレイ動画（字幕なし）](https://img.youtube.com/vi/sk6MESIuKiE/0.jpg)](https://www.youtube.com/watch?v=sk6MESIuKiE)
+ゲームプレイ動画  
+[![プレイ動画（字幕なし）](https://img.youtube.com/vi/sk6MESIuKiE/0.jpg)](https://www.youtube.com/watch?v=sk6MESIuKiE)  
 
 ## Overview
 3分で遊べるスコアアタック型2Dシューティングゲームです。  
 敵のWave出現・弾幕・スコアシステムなど、ゲームプレイの基礎システムを一から実装しました。
 
-ゲームプレイ動画 字幕あり
-[![プレイ動画（字幕あり）](https://img.youtube.com/vi/JeHjaCccNoc/0.jpg)](https://www.youtube.com/watch?v=JeHjaCccNoc)
+ゲームプレイ動画 字幕あり  
+[![プレイ動画（字幕あり）](https://img.youtube.com/vi/JeHjaCccNoc/0.jpg)](https://www.youtube.com/watch?v=JeHjaCccNoc)  
 
 ## Download
-Windows 実行ファイルは下記から
-💾 [Shooting Game Download（exe）](https://drive.google.com/file/d/1mrhnKYKGXsr1C1LA5TOWXOKeZmfwhMnD/view?usp=sharing)
+Windows 実行ファイルは下記から  
+💾 [Shooting Game Download（exe）](https://drive.google.com/file/d/1mrhnKYKGXsr1C1LA5TOWXOKeZmfwhMnD/view?usp=sharing)  
 
 ## Development Info
 | 項目 | 内容 |
