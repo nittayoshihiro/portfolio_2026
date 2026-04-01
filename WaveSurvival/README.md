@@ -50,7 +50,7 @@ Waveごとに敵を生成・全滅時に次Waveへ遷移する管理システム
 ```mermaid
 flowchart TD
     A[Start] --> B[Spawn Wave]
-    B --> C[Enemy Alive?]
+    B --> C{Enemy Alive?}
     C -->|Yes| D[Gameplay]
     D --> C
     C -->|No| E[Next Wave]
